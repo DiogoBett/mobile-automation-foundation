@@ -43,7 +43,7 @@ public class MobileHelper {
 
     // Cucumber Methods
 
-    @Given("^I have started the CBoJ Android Application$")
+    @Given("^I have started the [App Name] Android Application$")
     public void startAndroidApp1() {
 
         // Testing Android
@@ -56,7 +56,7 @@ public class MobileHelper {
         startAndroidApp(true);
     }
 
-    @Given("^I have started the NBI Android Application$")
+    @Given("^I have started the [App Name] Android Application$")
     public void startAndroidApp2() {
 
         // Testing Android
@@ -69,7 +69,7 @@ public class MobileHelper {
         startAndroidApp(false);
     }
 
-    @Given("^I have started the CBoJ iOS Application$")
+    @Given("^I have started the [App Name] iOS Application$")
     public void startIOSApp1() {
 
         // Testing iOS
@@ -82,7 +82,7 @@ public class MobileHelper {
         startIOSApp(true);
     }
 
-    @Given("^I have started the NBI iOS Application$")
+    @Given("^I have started the [App Name] iOS Application$")
     public void startIOSApp2() {
 
         // Testing iOS
