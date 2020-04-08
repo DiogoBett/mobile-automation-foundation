@@ -42,6 +42,7 @@ public class MobileUtility {
 
         DesiredCapabilities caps = new DesiredCapabilities();
 
+        caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest"); // This Capability is ONLY for iOS Version 13+)
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, getValue("ios.device")); // iPhone Simulator Being Used
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, getValue("ios.version")); // iOS Version Being Used in Simulator
@@ -114,13 +115,28 @@ public class MobileUtility {
 
     public static WebElement findElementByClassAndText(String elementClass, String elementText) {
 
-        List<MobileElement> elements = androidDriver.findElementsByClassName(elementClass);
+        List<MobileElement> elements;
         WebElement foundElement = null;
 
-        for (MobileElement element : elements) {
-            if (element.getAttribute("text").contains(elementText)) {
-                foundElement = element;
-                break;
+        if (testingIOS) {
+            elements = iosDriver.findElementsByClassName(elementClass);
+
+            for (MobileElement element : elements) {
+                if (element.getAttribute("name").contains(elementText)) {
+                    foundElement = element;
+                    break;
+                }
+            }
+        }
+
+        if (testingAndroid) {
+            elements = androidDriver.findElementsByClassName(elementClass);
+
+            for (MobileElement element : elements) {
+                if (element.getAttribute("text").contains(elementText)) {
+                    foundElement = element;
+                    break;
+                }
             }
         }
 
