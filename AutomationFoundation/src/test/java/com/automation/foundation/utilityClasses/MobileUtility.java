@@ -31,7 +31,6 @@ public class MobileUtility {
 
     // Basic Required Variables
     private static WebDriverWait wait;
-    private static TouchAction touch;
 
     // App Platform Verification
     private static boolean testingAndroid;
@@ -51,8 +50,8 @@ public class MobileUtility {
 
         try {
             iosDriver = new IOSDriver<MobileElement>(new URL(getValue("appium.address")), caps);
+            iosDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); // Set Find Element Timeout
             wait = new WebDriverWait(iosDriver, 60);
-            touch = new TouchAction(iosDriver);
         } catch (MalformedURLException ex) {
             iosDriver.resetApp();
         }
@@ -73,8 +72,8 @@ public class MobileUtility {
 
         try {
             androidDriver = new AndroidDriver<MobileElement>(new URL(getValue("appium.address")), caps);
+            iosDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); // Set Find Element Timeout
             wait = new WebDriverWait(androidDriver, 60);
-            touch = new TouchAction(androidDriver);
         } catch (MalformedURLException ex) {
             androidDriver.resetApp();
         }
@@ -82,20 +81,6 @@ public class MobileUtility {
     }
 
     // Mobile Utility Methods
-    public static void tap(WebElement where) {
-
-        touch.tap(PointOption.point(where.getLocation().getX(), where.getLocation().getY()))
-                .perform();
-    }
-
-    public static void swipe(WebElement from, WebElement to) {
-
-        touch.press(PointOption.point(from.getLocation().getX(), from.getLocation().getY()))
-                .moveTo(PointOption.point(to.getLocation().getX(), to.getLocation().getY()))
-                .release()
-                .perform();
-    }
-
     public static void scroll(String directionOrElement) {
 
         HashMap<String, String> scrollSettings = new HashMap<>();
@@ -143,18 +128,6 @@ public class MobileUtility {
         return foundElement;
     }
 
-    public static void waitSeconds() {
-
-        if (testingAndroid) {
-            androidDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        }
-
-        if (testingIOS) {
-            iosDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        }
-
-    }
-
     public static void checkKeyboard() {
 
         if (testingAndroid && androidDriver.isKeyboardShown()) {
@@ -188,7 +161,7 @@ public class MobileUtility {
     public static void touchFingerprintSensor() {
 
         if (testingAndroid) {
-            androidDriver.fingerPrint(2);
+            androidDriver.fingerPrint(1);
         }
 
         if (testingIOS) {
@@ -216,10 +189,6 @@ public class MobileUtility {
 
     public static boolean isTestingIOS() {
         return testingIOS;
-    }
-
-    private static TouchAction getTouch() {
-        return touch;
     }
 
     // Mobile Setters
