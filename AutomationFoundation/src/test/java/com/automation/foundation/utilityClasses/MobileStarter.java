@@ -46,44 +46,42 @@ public class MobileStarter {
         MobileUtility.startIOSApp();
     }
 
-    @Then("^I should Close the Android Application$")
-    public void closeAndroidApp() {
-
-        // Testing Android
-        MobileUtility.setTestingAndroid(false);
-
-        // Reset App Variant
-        setAndroidAppVariant(null);
-
-        // Close Android App
-        MobileUtility.getAndroidDriver().closeApp();
-
-        // Completing Test
-        Assert.assertFalse(MobileUtility.isTestingAndroid());
-    }
-
-    @Then("^I should Close the iOS Application$")
-    public void closeIOSApp() {
-
-        // Testing iOS
-        MobileUtility.setTestingIOS(false);
-
-        // Reset App Variant
-        setIOSdAppVariant(null);
-
-        // Close iOS App
-        MobileUtility.getIosDriver().closeApp();
-
-        // Completing Test
-        Assert.assertFalse(MobileUtility.isTestingIOS());
-    }
-
     @After
-    public void checkIfFailed(Scenario scenario) {
+    public void stopApplications(Scenario scenario) {
 
         if (scenario.isFailed()) {
             takeScreenshot();
         }
+
+        if (MobileUtility.isTestingAndroid()) {
+
+            // Testing Android
+            MobileUtility.setTestingAndroid(false);
+
+            // Reset App Variant
+            setAndroidAppVariant(null);
+
+            // Close Android App
+            MobileUtility.getAndroidDriver().closeApp();
+
+            // Completing Test
+            Assert.assertFalse(MobileUtility.isTestingAndroid());
+        }
+
+        if (MobileUtility.isTestingIOS()) {
+            // Testing iOS
+            MobileUtility.setTestingIOS(false);
+
+            // Reset App Variant
+            setIOSdAppVariant(null);
+
+            // Close iOS App
+            MobileUtility.getIosDriver().closeApp();
+
+            // Completing Test
+            Assert.assertFalse(MobileUtility.isTestingIOS());
+        }
+
     }
 
     // Failed Test Screenshot Method
