@@ -72,7 +72,7 @@ public class MobileUtility {
 
         try {
             androidDriver = new AndroidDriver<MobileElement>(new URL(getValue("appium.address")), caps);
-            iosDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); // Set Find Element Timeout
+            androidDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); // Set Find Element Timeout
             wait = new WebDriverWait(androidDriver, 60);
         } catch (MalformedURLException ex) {
             androidDriver.resetApp();
