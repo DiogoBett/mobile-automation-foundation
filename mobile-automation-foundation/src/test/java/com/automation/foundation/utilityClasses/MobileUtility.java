@@ -47,6 +47,7 @@ public class MobileUtility {
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, getValue("ios.version")); // iOS Version Being Used in Simulator
         caps.setCapability(MobileCapabilityType.APP, getValue("ios.app"));
         caps.setCapability("autoAcceptAlerts", true);
+        caps.setCapability("useNewWDA", true);
 
         try {
             iosDriver = new IOSDriver<MobileElement>(new URL(getValue("appium.address")), caps);
@@ -62,13 +63,17 @@ public class MobileUtility {
 
         DesiredCapabilities caps = new DesiredCapabilities();
 
-        caps.setCapability("deviceName", getValue("android.device.name")); // Emulator Name
-        caps.setCapability("udid", getValue("android.device.udid")); // Emulator UDID
-        caps.setCapability("platformName", "Android");
-        caps.setCapability("platformVersion", getValue("android.device.version")); // Android Version
+        caps.setCapability(MobileCapabilityType.DEVICE_NAME, getValue("android.device.name")); // Emulator Name
+        caps.setCapability(MobileCapabilityType.UDID, getValue("android.device.udid")); // Emulator UDID
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, getValue("android.device.version")); // Android Version
         caps.setCapability("appPackage", getValue("android.apk.package"));
         caps.setCapability("appActivity", getValue("android.apk.activity"));
-        caps.setCapability("app", getValue("android.apk"));
+        caps.setCapability("noReset", getValue("android.reset"));
+
+        if (getValue("android.reset").equals("false")) {
+            caps.setCapability(MobileCapabilityType.APP, getValue("android.apk"));
+        }
 
         try {
             androidDriver = new AndroidDriver<MobileElement>(new URL(getValue("appium.address")), caps);
