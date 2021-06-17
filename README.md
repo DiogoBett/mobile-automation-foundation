@@ -10,7 +10,7 @@ This Repository has been Created to help QA Engineer's to Automate Android and i
  - iOS Simulator / Real Device
  - Appium Server
 
-**How to Setup:**
+**How to Setup:** [ (Full Setup Guide)](https://docs.google.com/document/d/1iZqPCzfbzoRdOZb_cLRrMQPVKnfBPsgYARq57xT4jew/edit?usp=sharing)
 1. Open the Repository in IntelliJ;
 2. Go to 'pom.xml' and Import Maven Dependencies;
 3. Go to the “automation” Properties File;
