@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 public class androidExampleDefs {
 
     // Basic Required Variables
-    private static AndroidDriver<MobileElement> driver = MobileUtility.getAndroidDriver();
+    private AndroidDriver<MobileElement> driver = MobileUtility.getAndroidDriver();
 
     @Given("^I do something in the App - Android$")
     public void something1() {

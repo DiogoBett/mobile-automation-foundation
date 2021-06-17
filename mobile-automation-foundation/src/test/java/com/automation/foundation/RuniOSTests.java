@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty", "json:target/cucumber-report/cucumber.json"},
-        features = "src/test/resources/com.automation.foundatio/iosFeatures")
+        features = "src/test/resources/com.automation.foundation/iosFeatures")
 public class RuniOSTests {
     // Run This Cucumber Test Class to Run all the iOS Automated Tests
 }
