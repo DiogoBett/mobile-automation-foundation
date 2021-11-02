@@ -7,6 +7,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -82,6 +83,29 @@ public class MobileUtility {
             androidDriver.resetApp();
         }
 
+    }
+
+    // Mobile Validate Methods
+    public static void validateScreen(String activityOrController) {
+
+        if (testingAndroid) {
+            Assert.assertTrue(androidDriver.getCurrentUrl().contains(activityOrController));
+        }
+
+        if (testingIOS) {
+            Assert.assertTrue(iosDriver.getCurrentUrl().contains(activityOrController));
+        }
+
+    }
+
+    public static void validateElementTextEquals(WebElement element, String elementText) {
+
+        Assert.assertEquals(element.getText(), elementText);
+    }
+
+    public static void validateElementTextContains(WebElement element, String elementText) {
+
+        Assert.assertTrue(element.getText().contains(elementText));
     }
 
     // Mobile Utility Methods
