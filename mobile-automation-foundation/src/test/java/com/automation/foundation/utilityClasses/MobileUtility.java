@@ -102,14 +102,14 @@ public class MobileUtility {
 
     }
 
-    public static void checkKeyboard() {
+    public static void hideKeyboard() {
 
         if (testingAndroid && androidDriver.isKeyboardShown()) {
             androidDriver.hideKeyboard();
         }
 
         if (testingIOS && iosDriver.isKeyboardShown()) {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//XCUIElementTypeButton[@name=\"Done\"]\n"))).click();
+            iosDriver.hideKeyboard();
         }
 
     }
@@ -147,19 +147,7 @@ public class MobileUtility {
 
     }
 
-    public static void clickDeleteButton() {
-
-        if (testingAndroid) {
-            androidDriver.pressKey(new KeyEvent().withKey(AndroidKey.DEL));
-        }
-
-        if (testingIOS) {
-            iosDriver.getKeyboard().pressKey(Keys.DELETE);
-        }
-
-    }
-
-    public static void touchFingerprintSensor() {
+    public static void useFingerprint() {
 
         if (testingAndroid) {
             androidDriver.fingerPrint(1);
