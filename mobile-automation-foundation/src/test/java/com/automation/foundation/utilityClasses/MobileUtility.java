@@ -102,36 +102,6 @@ public class MobileUtility {
 
     }
 
-    public static WebElement findElementByClassAndText(String elementClass, String elementText) {
-
-        List<MobileElement> elements;
-        WebElement foundElement = null;
-
-        if (testingIOS) {
-            elements = iosDriver.findElementsByClassName(elementClass);
-
-            for (MobileElement element : elements) {
-                if (element.getAttribute("name").contains(elementText)) {
-                    foundElement = element;
-                    break;
-                }
-            }
-        }
-
-        if (testingAndroid) {
-            elements = androidDriver.findElementsByClassName(elementClass);
-
-            for (MobileElement element : elements) {
-                if (element.getAttribute("text").contains(elementText)) {
-                    foundElement = element;
-                    break;
-                }
-            }
-        }
-
-        return foundElement;
-    }
-
     public static void checkKeyboard() {
 
         if (testingAndroid && androidDriver.isKeyboardShown()) {
