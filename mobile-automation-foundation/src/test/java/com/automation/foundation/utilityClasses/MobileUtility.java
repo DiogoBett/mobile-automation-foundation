@@ -1,20 +1,19 @@
 package com.automation.foundation.utilityClasses;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -145,10 +144,37 @@ public class MobileUtility {
 
     }
 
-    public static String randomNumber() {
+    public static void takeScreenshot(String scenarioId) {
 
-        int randomNumber = (int) (Math.random() * 999999);
-        return Integer.toString(randomNumber);
+        File sourceFile;
+        File destinationFile;
+
+        // Takes Screenshot of Android Simulator & Saves
+        if (MobileUtility.isTestingAndroid()) {
+
+            try {
+                sourceFile = ((TakesScreenshot) MobileUtility.getAndroidDriver()).getScreenshotAs(OutputType.FILE);
+                destinationFile = new File(getValue("android.screenshots") + scenarioId + ".png");
+                FileUtils.copyFile(sourceFile, destinationFile);
+            } catch (IOException ex) {
+                System.out.println("Unable to Take Screenshot of Android Simulator");
+            }
+
+        }
+
+        // Takes Screenshot of iOS Simulator & Saves
+        if (MobileUtility.isTestingIOS()) {
+
+            try {
+                sourceFile = ((TakesScreenshot) MobileUtility.getIosDriver()).getScreenshotAs(OutputType.FILE);
+                destinationFile = new File(getValue("ios.screenshots") + scenarioId + ".png");
+                FileUtils.copyFile(sourceFile, destinationFile);
+            } catch (IOException ex) {
+                System.out.println("Unable to Take Screenshot of iOS Simulator");
+            }
+
+        }
+
     }
 
     public static void clickDeleteButton() {

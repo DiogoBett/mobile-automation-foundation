@@ -3,11 +3,7 @@ package com.automation.foundation.utilityClasses;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -50,7 +46,7 @@ public class MobileStarter {
     public void stopApplications(Scenario scenario) {
 
         if (scenario.isFailed()) {
-            takeScreenshot();
+            MobileUtility.takeScreenshot(scenario.getId());
         }
 
         if (MobileUtility.isTestingAndroid()) {
@@ -80,40 +76,6 @@ public class MobileStarter {
 
             // Completing Test
             Assert.assertFalse(MobileUtility.isTestingIOS());
-        }
-
-    }
-
-    // Failed Test Screenshot Method
-    private void takeScreenshot() {
-
-        File sourceFile;
-        File destinationFile;
-
-        // Takes Screenshot of Android Simulator & Saves
-        if (MobileUtility.isTestingAndroid()) {
-
-            try {
-                sourceFile = ((TakesScreenshot) MobileUtility.getAndroidDriver()).getScreenshotAs(OutputType.FILE);
-                destinationFile = new File(getValue("android.screenshots") + MobileUtility.randomNumber() + ".png");
-                FileUtils.copyFile(sourceFile, destinationFile);
-            } catch (IOException ex) {
-                System.out.println("Unable to Take Screenshot of Android Simulator");
-            }
-
-        }
-
-        // Takes Screenshot of iOS Simulator & Saves
-        if (MobileUtility.isTestingIOS()) {
-
-            try {
-                sourceFile = ((TakesScreenshot) MobileUtility.getIosDriver()).getScreenshotAs(OutputType.FILE);
-                destinationFile = new File(getValue("ios.screenshots") + MobileUtility.randomNumber() + ".png");
-                FileUtils.copyFile(sourceFile, destinationFile);
-            } catch (IOException ex) {
-                System.out.println("Unable to Take Screenshot of iOS Simulator");
-            }
-
         }
 
     }
