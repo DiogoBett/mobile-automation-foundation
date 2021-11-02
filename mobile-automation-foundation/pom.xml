@@ -79,7 +79,7 @@
             <plugin>
                 <groupId>com.trivago.rta</groupId>
                 <artifactId>cluecumber-report-plugin</artifactId>
-                <version>1.10.2</version>
+                <version>2.6.1</version>
                 <executions>
                     <execution>
                         <id>report</id>
@@ -93,7 +93,6 @@
                     <sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
                     <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
                 </configuration>
-
             </plugin>
 
         </plugins>
