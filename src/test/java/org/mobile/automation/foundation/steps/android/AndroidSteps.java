@@ -1,15 +1,15 @@
-package com.automation.foundation.androidDefs;
+package org.mobile.automation.foundation.steps.android;
 
-import com.automation.foundation.utilityClasses.MobileUtility;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.mobile.automation.foundation.utils.MobileUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class androidExampleDefs {
+public class AndroidSteps {
 
     // Basic Required Variables
     private AndroidDriver<MobileElement> driver = MobileUtility.getAndroidDriver();

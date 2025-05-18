@@ -1,15 +1,15 @@
-package com.automation.foundation.iosDefs;
+package org.mobile.automation.foundation.steps.ios;
 
-import com.automation.foundation.utilityClasses.MobileUtility;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.mobile.automation.foundation.utils.MobileUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class iOSExampleDefs {
+public class iOSSteps {
 
     // Basic Required Variables
     private IOSDriver<MobileElement> driver = MobileUtility.getIosDriver();

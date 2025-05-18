@@ -1,11 +1,10 @@
-package com.automation.foundation.utilityClasses;
+package org.mobile.automation.foundation.utils;
 
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -94,7 +93,7 @@ public class MobileStarter {
 
         try {
             properties = new Properties();
-            properties.load(new FileInputStream("automation.properties"));
+            properties.load(new FileInputStream("config.properties"));
         } catch (IOException ex ) {
             System.out.println(ex.getMessage());
         }
