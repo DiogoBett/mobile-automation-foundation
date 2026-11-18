@@ -15,12 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
 
-      - name: Setup Java / Maven Check
+      - name: Setup Java
         uses: actions/setup-java@v6.3.0
         with:
           distribution: temurin
           java-version: "21"
           cache: maven
 
-      - name: Verify dependencies, compilation, and formatting
+      - name: Maven Check
         run: mvn --batch-mode --no-transfer-progress -DskipTests verify
