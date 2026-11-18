@@ -19,7 +19,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.mobile.automation.foundation" level="INFO">
+    <logger name="io.github.diogobett" level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </logger>
