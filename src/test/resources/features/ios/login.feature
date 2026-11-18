@@ -1,3 +1,4 @@
+@ios
 Feature: iOS [Insert Feature Name Here]
   Everybody wants to know if I can:
   -> Do Something
